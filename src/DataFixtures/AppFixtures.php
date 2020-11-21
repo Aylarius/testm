@@ -118,6 +118,15 @@ class AppFixtures extends Fixture
         ];
     }
 
+    // Generates fake data for post fixtures using fake phrase from getPhrases()
+    // Post title is using the fake phrase
+    // Post slug is based on the fake phrase using slugify to clean out the phrase
+    // Post summary is using random text generated from the fake phrases
+    // Post content is retrieved from getPostContent()
+    // Datetime is created from the current day minus the current index of the loop (in days)
+    // Reference is set to either jane_admin or tom_admin
+    // Tags are retrieved from getRandomTags()
+    // Comments are null
     private function getPostData()
     {
         $posts = [];

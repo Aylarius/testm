@@ -9,7 +9,7 @@
 
     String.prototype.render = function (parameters) {
         return this.replace(/({{ (\w+) }})/g, function (match, pattern, name) {
-            return parameters[name];
+            return parameters[name].replace(/(<([^>]+)>)/gi, "");
         })
     };
 
@@ -19,7 +19,8 @@
     var InstantSearch = function (element, options) {
         this.$input = $(element);
         this.$form = this.$input.closest('form');
-        this.$preview = $('<ul class="search-preview list-group">').appendTo(this.$form);
+        this.$results = $('#results');
+        this.$preview = $('<ul class="search-preview list-group">').appendTo(this.$results);
         this.options = $.extend({}, InstantSearch.DEFAULTS, this.$input.data(), options);
 
         this.$input.keyup(this.debounce());
@@ -36,6 +37,7 @@
                     <p class="post-metadata">\
                        <span class="metadata"><i class="fa fa-calendar"></i> {{ date }}</span>\
                        <span class="metadata"><i class="fa fa-user"></i> {{ author }}</span>\
+                       <span class="metadata"><i class="fa fa-folder"></i> {{ category }}</span>\
                     </p>\
                     <p>{{ summary }}</p>\
                 </article>'

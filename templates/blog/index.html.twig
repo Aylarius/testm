@@ -14,9 +14,10 @@
             <p class="post-metadata">
                 <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</span>
                 <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
+                <span class="metadata"><i class="fa fa-folder"></i> {{ post.category ? post.category.title : '' }}</span>
             </p>
 
-            <p>{{ post.summary }}</p>
+            <p>{{ post.summary|striptags }}</p>
 
             {{ include('blog/_post_tags.html.twig') }}
         </article>

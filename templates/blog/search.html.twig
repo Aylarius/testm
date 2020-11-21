@@ -20,8 +20,10 @@
         </div>
     </form>
 
-    <div id="results">
-    </div>
+    {% set results %}
+        <div id="results"></div>
+    {% endset %}
+    {{ results|raw }}
 {% endblock %}
 
 {% block sidebar %}

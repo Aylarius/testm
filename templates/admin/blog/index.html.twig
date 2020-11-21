@@ -23,7 +23,7 @@
                 <td>{{ post.publishedAt|localizeddate('medium', 'short', null, 'UTC') }}</td>
                 <td class="text-right">
                     <div class="item-actions">
-                        <a href="{{ path('admin_post_edit', {id: post.id}) }}">
+                        <a href="{{ path('admin_post_show', {id: post.id}) }}" class="btn btn-sm btn-default">
                             <i class="fa fa-eye" aria-hidden="true"></i> {{ 'action.show'|trans }}
                         </a>
 

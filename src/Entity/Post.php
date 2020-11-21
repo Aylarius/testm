@@ -121,6 +121,14 @@ class Post
      */
     private $tags;
 
+    /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $category;
+
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
@@ -228,5 +236,21 @@ class Post
     public function getTags(): Collection
     {
         return $this->tags;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     */
+    public function setCategory(Category $category): void
+    {
+        $this->category = $category;
     }
 }

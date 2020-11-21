@@ -62,7 +62,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/search", methods={"POST"}, name="blog_search")
+     * @Route("/search", methods={"GET"}, name="blog_search")
      */
     public function search(Request $request, PostRepository $posts): Response
     {
@@ -70,7 +70,7 @@ class BlogController extends AbstractController
             return $this->render('blog/search.html.twig');
         }
 
-        $query = $request->query->get('s', '');
+        $query = $request->query->get('q', '');
         $limit = $request->query->get('l', 10);
         $foundPosts = $posts->findBySearchQuery($query, $limit);
 
@@ -80,6 +80,7 @@ class BlogController extends AbstractController
                 'title' => htmlspecialchars($post->getTitle(), ENT_COMPAT | ENT_HTML5),
                 'date' => $post->getPublishedAt()->format('M d, Y'),
                 'author' => htmlspecialchars($post->getAuthor()->getFullName(), ENT_COMPAT | ENT_HTML5),
+                'category' => $post->getCategory() ? htmlspecialchars($post->getCategory()->getTitle(), ENT_COMPAT | ENT_HTML5) : '',
                 'summary' => $post->getSummary(),
                 'url' => $this->generateUrl('blog_post', ['slug' => $post->getSlug()]),
             ];
