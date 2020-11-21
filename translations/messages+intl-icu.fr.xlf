@@ -468,7 +468,7 @@
             </trans-unit>
             <trans-unit id="category.updated_successfully">
                 <source>category.updated_successfully</source>
-                <target>Catégorie miss à jour avec succès !</target>
+                <target>Catégorie mise à jour avec succès !</target>
             </trans-unit>
 
         </body>
